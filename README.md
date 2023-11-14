@@ -100,6 +100,7 @@ def displayStats(statList):
 <br> - queueid: the type of gamemode to search from (you can search norms/ranked, using DataDragon in 1.1)
 <br> - matches: how many games to search from (maxed at 100 per query)
 <br> - index: where to start search (i.e. index=0, matches=50, gets your last 50 games / index=30, matches=50, gets your last 50 games not including your most recent 30)
+<br> This might take a few minutes depending on how many games your searching through (the main bulk of the search time is in the function cacheAccount() and lol_watcher.match.by_id(region, gameid).
 ```python
 # player name and friends
 playerName = 'Fwoqqet'
@@ -130,7 +131,7 @@ queueid = 450 #this is ARAM
 games = lol_watcher.match.matchlist_by_puuid(region, puuid, index, matches, queueid)
 
 for gameid in games:
- gamedetails = lol_watcher.match.by_id(region, gameid)gamedetails = lol_watcher.match.by_id(region, gameid)
+ gamedetails = lol_watcher.match.by_id(region, gameid)
  namesList = getNamesFromMatch(gamedetails, puuidNameDict)
  victory = hasWon(gamedetails, namesList)
  statList = updateStatList(statList, namesList, victory)
