@@ -17,20 +17,12 @@ from riotwatcher import LolWatcher, ApiError
 
 <b>2.3 Initialise a few variables..</b>
 ```python
-# Make sure to register/renew apiKey at: https://developer.riotgames.com/ 
-apiKey = 'RGAPI-XXX'
-region = 'oc1'
-playerName = 'HoChiLim'
+# Make sure to register/renew apiKey at: https://developer.riotgames.com/
+apiKey = 'RGAPI-32df8dd9-f72c-422c-7f27-af8eaf770eb3' # looks something like this (never share your api key!)
 
-# these are my friends!
-myFriends = [
-    playerName, # add any amount of names after
-    'pinkfolder2', 
-    'XxElitePetexX',
-    'Floppy Corn',
-    'Player5',
-    'Player6'
-]
+# setup riot-watcher with our key
+lol_watcher = LolWatcher(apiKey)
+region = 'oc1'
 ```
 
 <details>
@@ -104,24 +96,45 @@ def displayStats(statList):
 # 3. Implementation and Usage
 <b>3.1 Simply just run the below and you'll get your results!</b>
 <br> Notes:
+<br> - myFriends: you can have as much (or as less) friends as you'd like in the list!
 <br> - queueid: the type of gamemode to search from (you can search norms/ranked, using DataDragon in 1.1)
-<br> - matches: how many games to search from
+<br> - matches: how many games to search from (maxed at 100 per query)
 <br> - index: where to start search (i.e. index=0, matches=50, gets your last 50 games / index=30, matches=50, gets your last 50 games not including your most recent 30)
 ```python
+# player name and friends
+playerName = 'Fwoqqet'
+myFriends = [
+ playerName,
+ 'pinkfolder2',
+ 'XxElitePetexX',
+ 'Floppy Corn',
+ 'Elliechu',
+ 'kdng',
+ 'BirdBrainn',
+ 'HoChiLim',
+ 'PhotonBlade8'
+]
+
+# grab my puuid
+me = lol_watcher.summoner.by_name(region, playerName)
+puuid = me['puuid']
+
+# grab all our friends' puuids- so we don't have to constantly search for them
+statList = openStatList(myFriends)
+puuidNameDict = cacheAccounts(myFriends)
+
 # grab the matches
-queueid = 450 #this is ARAM
-matches = 5
 index = 0
-games = lol_watcher.match.matchlist_by_puuid(region, puuid, 0, matches, queueid)
+matches = 100
+queueid = 450 #this is ARAM
+games = lol_watcher.match.matchlist_by_puuid(region, puuid, index, matches, queueid)
 
 for gameid in games:
-    for gameid in games:
-    gamedetails = lol_watcher.match.by_id(region, gameid)
-    namesList = getNamesFromMatch(gamedetails, puuidNameDict)
-    victory = hasWon(gamedetails, namesList)
-    statList = updateKDA(gamedetails, statList, namesList)
-    statList = updateStatList(statList, namesList, victory)
-    
+ gamedetails = lol_watcher.match.by_id(region, gameid)gamedetails = lol_watcher.match.by_id(region, gameid)
+ namesList = getNamesFromMatch(gamedetails, puuidNameDict)
+ victory = hasWon(gamedetails, namesList)
+ statList = updateStatList(statList, namesList, victory)
+
 displayStats(statList)
 ```
 
