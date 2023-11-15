@@ -3,16 +3,15 @@ Personal project to calculate the ARAM winrate compatibility between your friend
 
 # 0. Introduction
 # 1. Documentation and Notes
-league of legends riot API:
+<b>league of legends riot API</b>
 <br>https://developer.riotgames.com/apis
 <br>All the information about their API's including required inputs, outputs and error codes are here.
 
-<br>
-data dragon:
+<b>data dragon</b>
 <br>https://riot-api-libraries.readthedocs.io/en/latest/ddragon.html
 <br>This is where riot stores most their their raw data (champion details, gamemode codes, lore, etc) 
 
-<br>riot-watcher documentation
+<b>riot-watcher documentation</b>
 <br>https://riot-watcher.readthedocs.io/en/latest/
 <br>We're only making a simple project and we don't want to handle rate-limiting, so we're using riot-watcher! 
 
