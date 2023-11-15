@@ -1,17 +1,20 @@
 # riotapi-aramwins
-Personal project to calculate the ARAM winrate compatibility between your friends!
+Personal python project to calculate the ARAM winrate compatibility between your friends!
 
 # 0. Introduction
+For context: I play games with friends- League of Legends- there's more than seven of us- and games can only manage 5 of us at a time. We win some and we lose some, but I always wondered… In the sake of competitiveness- we’ve always wondered: who do I win more with? That’s where this comes in!
+I'm using this with jupyter notebook (web-based python ide)
+
 # 1. Documentation and Notes
-<b>league of legends riot API</b>
+**league of legends riot API**
 <br>https://developer.riotgames.com/apis
 <br>All the information about their API's including required inputs, outputs and error codes are here.
 
-<b>data dragon</b>
+**data dragon**
 <br>https://riot-api-libraries.readthedocs.io/en/latest/ddragon.html
 <br>This is where riot stores most their their raw data (champion details, gamemode codes, lore, etc) 
 
-<b>riot-watcher documentation</b>
+**riot-watcher documentation**
 <br>https://riot-watcher.readthedocs.io/en/latest/
 <br>We're only making a simple project and we don't want to handle rate-limiting, so we're using riot-watcher! 
 
